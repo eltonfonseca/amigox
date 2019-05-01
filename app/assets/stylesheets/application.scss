@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'bootstrap_sb_admin_base_v1';
+@import "avatar";
+@import "users";
+@import "sidebar";
