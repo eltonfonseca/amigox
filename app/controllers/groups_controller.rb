@@ -7,12 +7,37 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = current_user.groups
+  end
+
+  # GET /groups/all
+  def all
+    @groups = Group.joins(:groups_users).where("groups_users.user_id != #{current_user.id}")
+  end
+
+  def friend
+    @friend = current_user.friend
+  end
+
+  def raffle
+    @group = Group.find(params[:group_id])
+    friends = @group.users
+    current_user.raffle(friends)
+    flash[:alert] = "ok"
+    redirect_to group_path(session[:group_id])
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @group = Group.find(params[:id])
+    session[:group_id] = @group.id
+    if @group.users.exists?(current_user.id)
+      @users = @group.users
+    else
+      @group.users << current_user
+      @users = @group.users
+    end
   end
 
   # GET /groups/new
@@ -28,9 +53,10 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-
+    @group.id_created = current_user.id if current_user
     respond_to do |format|
       if @group.save
+        @group.users << current_user
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -59,7 +85,7 @@ class GroupsController < ApplicationController
     # Layout
     def resolve_layout
       case action_name
-      when "show"
+      when "show", "friend"
         "group"
       else
         "application"
@@ -73,6 +99,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :id_created)
     end
 end

@@ -1,0 +1,22 @@
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <h1 class="mt-2">Grupos Disponíveis</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @groups.each do |group| %>
+                <tr>
+                    <td><%= group.name %></td>
+                    <td><%= link_to '', group %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
