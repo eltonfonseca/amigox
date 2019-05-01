@@ -9,12 +9,9 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body class="page-top">
-        <%= render partial: 'shared/navigation_bar' %>
-            <%= yield %>
-          </div>
-        </div>
-      </div>
+  <body class="text-center">
+    <div class="container">
+        <%= yield %>
     </div>
   </body>
 </html>
