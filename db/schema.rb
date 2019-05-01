@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_230716) do
+ActiveRecord::Schema.define(version: 2019_05_01_210417) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "id_created"
     t.index ["name"], name: "index_groups_on_name", unique: true
+  end
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+    t.index ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id"
+    t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -38,8 +46,12 @@ ActiveRecord::Schema.define(version: 2019_04_30_230716) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "raffled_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["raffled_id"], name: "index_users_on_raffled_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_id"], name: "index_users_on_user_id"
   end
 
 end

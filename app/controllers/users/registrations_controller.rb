@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def attributes
-    [:name, :email, :password, :password_confirmation]
+    [:name, :email, :password, :password_confirmation, :user_id, :raffled_id]
   end
 
   # The path used after sign up.
