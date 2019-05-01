@@ -15,8 +15,8 @@
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-light">Página Inicial</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Seus Grupos</a>
+          <%= link_to 'Página Inicial', root_path, class: "list-group-item list-group-item-action bg-light" %>
+          <%= link_to 'Meus Grupos', groups_path, class: "list-group-item list-group-item-action bg-light" %>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
