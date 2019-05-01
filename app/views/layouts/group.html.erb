@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>AmigoX</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  </head>
+</head>
 
-  <body class="page-top">
+<body class="page-top">
     <%= render partial: 'shared/navigation_bar' %>
     <div class="d-flex" id="wrapper">
-      <!-- Sidebar -->
-      <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="list-group list-group-flush">
-          <%= link_to 'Meu Amigo', root_path, class: "list-group-item list-group-item-action bg-light" %>
-          <%= link_to 'Chat', groups_path, class: "list-group-item list-group-item-action bg-light" %>
-          <%= link_to 'Convidar', root_path, class: "list-group-item list-group-item-action bg-light" %>
-          <%= link_to 'Sair', groups_path, class: "list-group-item list-group-item-action bg-light" %>
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <%= link_to 'Integrantes', raffle_index_path, class: "list-group-item list-group-item-action bg-light" %>
+                <%= link_to 'Meu Amigo', raffle_index_path, class: "list-group-item list-group-item-action bg-light" %>
+                <%= link_to 'Chat', groups_path, class: "list-group-item list-group-item-action bg-light" %>
+                <%= link_to 'Convidar', root_path, class: "list-group-item list-group-item-action bg-light" %>
+                <%= link_to 'Sair', groups_path, class: "list-group-item list-group-item-action bg-light" %>
+            </div>
         </div>
-      </div>
-      <!-- /#sidebar-wrapper -->
-      <%= yield %>
+        <!-- /#sidebar-wrapper -->
+        <%= yield %>
     </div>
-  </body>
+</body>
+
 </html>

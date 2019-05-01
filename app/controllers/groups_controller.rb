@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  layout "group"
+  layout :resolve_layout
 
   # GET /groups
   # GET /groups.json
@@ -54,17 +54,18 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
-  def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
+
+    # Layout
+    def resolve_layout
+      case action_name
+      when "show"
+        "group"
+      else
+        "application"
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
