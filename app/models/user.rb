@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups
   belongs_to :friend, class_name: 'User', foreign_key: 'user_id', optional: true
   has_one :user, foreign_key: 'user_id', dependent: :nullify
+  has_many :messages, dependent: :destroy
   
   def raffle(users)
     @friends = users.to_a.shuffle!

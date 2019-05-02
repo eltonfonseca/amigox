@@ -1,5 +1,9 @@
 <div id="page-content-wrapper">
         <div class="container-fluid">
-            <%= @friend.name %>            
+            <% if !@friend == nil %>
+            <%= @friend.name %>
+            <% else %>
+                <p>Não tem nenhum amigo ainda!</p>  
+            <% end %>          
         </div>
     </div>

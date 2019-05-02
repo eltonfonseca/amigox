@@ -18,7 +18,7 @@
             <div class="list-group list-group-flush">
                 <%= link_to 'Integrantes', group_path(session[:group_id]), class: "list-group-item list-group-item-action bg-light" %>
                 <%= link_to 'Meu Amigo', group_friend_path(session[:group_id]), class: "list-group-item list-group-item-action bg-light" %>
-                <%= link_to 'Chat', groups_path, class: "list-group-item list-group-item-action bg-light" %>
+                <%= link_to 'Chat', group_chat_path(session[:group_id]), class: "list-group-item list-group-item-action bg-light" %>
                 <%= link_to 'Convidar', root_path, class: "list-group-item list-group-item-action bg-light" %>
                 <%= link_to 'Sair', groups_path, class: "list-group-item list-group-item-action bg-light" %>
             </div>

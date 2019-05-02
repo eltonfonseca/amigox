@@ -27,6 +27,12 @@ class GroupsController < ApplicationController
     redirect_to group_path(session[:group_id])
   end
 
+  def chat
+    @group = Group.find(params[:group_id])
+    @message = Message.new group: @group
+    @messages = @group.messages.includes(:user)
+  end
+
   # GET /groups/1
   # GET /groups/1.json
   def show
@@ -85,7 +91,7 @@ class GroupsController < ApplicationController
     # Layout
     def resolve_layout
       case action_name
-      when "show", "friend"
+      when "show", "friend", "chat"
         "group"
       else
         "application"

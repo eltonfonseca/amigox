@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :groups do 
     get 'friend/', to: 'groups#friend'
     post 'raffle/', to: 'groups#raffle'
+    get 'chat/', to: 'groups#chat'
   end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
